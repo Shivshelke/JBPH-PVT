@@ -236,7 +236,22 @@
     }
 
     function submitForm() {
-      // Typically an AJAX request would go here
+      // Gather form data
+      const name = document.getElementById('name').value || 'Not provided';
+      const mobile = document.getElementById('mobile').value || 'Not provided';
+      const email = document.getElementById('email').value || 'Not provided';
+      const city = document.getElementById('city').value || 'Not provided';
+      const loanType = document.getElementById('loan-type').value || 'Not provided';
+      const loanAmount = document.getElementById('loan-amount').value || 'Not provided';
+      const empType = document.getElementById('emp-type').value || 'Not provided';
+
+      // Format message for WhatsApp
+      const waMessage = `*New Loan Application!* 🟢%0A%0A*Name:* ${name}%0A*Mobile:* ${mobile}%0A*Email:* ${email}%0A*City:* ${city}%0A%0A*Loan Type:* ${loanType}%0A*Amount:* ₹${loanAmount}%0A*Employment:* ${empType}`;
+
+      // Open WhatsApp
+      window.open(`https://wa.me/919607968569?text=${waMessage}`, '_blank');
+
+      // Show success screen
       document.querySelectorAll('.form-step').forEach(el => el.classList.remove('active'));
       document.getElementById('step-success').classList.add('active');
       document.querySelector('.progress-bar').style.display = 'none';
